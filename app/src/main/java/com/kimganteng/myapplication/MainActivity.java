@@ -23,20 +23,36 @@ public class MainActivity extends AppCompatActivity {
 
         AlienOpenAds.LoadOpenAds("");
         RelativeLayout layAds = findViewById(R.id.layAds);
+        RelativeLayout layAds2 = findViewById(R.id.layAds2);
+        RelativeLayout layAds3 = findViewById(R.id.layAds3);
+        RelativeLayout layAds7 = findViewById(R.id.layNative4);
         RelativeLayout layNative = findViewById(R.id.layNative);
-        AliendroidInitialize.SelectAdsAdmob(this,"KOSONG","12345678");
-        AliendroidNative.SmallNativeAdmob(this,layAds,"KOSONG","XXca-app-pub-3940256099942544/2247696110","342342352",
+        AliendroidInitialize.SelectAdsAdmob(this,"KOSONG","SDGREGFD");
+
+        AliendroidNative.SmallNativeAdmobNonStroke(this,layNative,"APPLOVIN-M","xxxca-app-pub-3940256099942544/2247696110","8d8bffb4fc9bc946",
                 "","","","","");
+
+        AliendroidNative.SmallNativeAdmobNonStroke(this,layAds,"APPLOVIN-M","xxxca-app-pub-3940256099942544/2247696110","8d8bffb4fc9bc946",
+                "","","","","");
+
+        AliendroidNative.SmallNativeAdmob(this,layAds2,"APPLOVIN-M","xxxca-app-pub-3940256099942544/2247696110","8d8bffb4fc9bc946",
+                "","","","","");
+        AliendroidNative.SmallNativeAdmobWhite(this,layAds3,"APPLOVIN-M","xxxca-app-pub-3940256099942544/2247696110","8d8bffb4fc9bc946",
+                "","","","","");
+        AliendroidNative.SmallNativeAdmobGuide(this,layAds7,"APPLOVIN-M","xxxca-app-pub-3940256099942544/2247696110","8d8bffb4fc9bc946",
+                "","","","","");
+
+
         //AliendroidMediumBanner.MediumBannerIron(this,layNative,"","Home_Screen","");
 
-        //AliendroidReward.LoadRewardAdmob(this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
-        AliendroidIntertitial.LoadIntertitialAdmob(this,"KOSONG","DefaultInterstitial","KOSONG","a","b","c","d","e");
+        //AliendroidReward.LoadRewardAdmob(this,"APPLOVIN-D","xxxca-app-pub-3940256099942544/5224354917","");
+        AliendroidIntertitial.LoadIntertitialAdmob(this,"KOSONG","8d8bffb4fc9bc946","MIX","a","b","c","d","e");
 
     }
 
     public void showreward(View view){
 
-        AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,"KOSONG","DefaultInterstitial","",0,"a","b","c","d","e");
-        //AliendroidReward.ShowRewardAdmob(MainActivity.this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
+        AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,"KOSONG","8d8bffb4fc9bc946","",0,"a","b","c","d","e");
+        //AliendroidReward.ShowRewardAdmob(MainActivity.this,"APPLOVIN-D","xxxca-app-pub-3940256099942544/5224354917","");
     }
 }

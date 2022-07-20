@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="2dp"
     android:background="@drawable/stroke">
 
     <LinearLayout
@@ -21,13 +22,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="3dp"
-                android:background="@drawable/round_black">
+                android:background="@drawable/round_blue">
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="24dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/round_black"
+                    android:background="@drawable/round_blue"
                     android:gravity="center"
                     android:padding="2dp"
                     android:text="Ad"
@@ -103,11 +104,11 @@
 
             <Button
                 android:id="@+id/cta_button"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/round_black"
+                android:background="@drawable/round_blue"
                 android:textColor="@color/native_text_button"
                 android:textSize="8sp"
                 tools:text="Install" />

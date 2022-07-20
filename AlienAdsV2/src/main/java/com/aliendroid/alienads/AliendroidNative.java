@@ -76,6 +76,12 @@ public class AliendroidNative {
                                 nativeAdLoader.destroy(nativeAdMax);
                             }
                             break;
+
+                        case "MIX":
+                            if (nativeAdMax != null) {
+                                nativeAdLoader.destroy(nativeAdMax);
+                            }
+                            break;
                         case "MOPUB":
 
                             break;
@@ -141,6 +147,59 @@ public class AliendroidNative {
                                                             .setCallToActionButtonId(R.id.cta_button)
                                                             .build();
                                                     nativeAdView = new MaxNativeAdView(binder, activity);
+
+                                                    nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                    nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                        @Override
+                                                        public void onAdRevenuePaid(MaxAd ad) {
+
+                                                        }
+                                                    });
+                                                    nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                        @Override
+                                                        public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                            if (nativeAd != null) {
+                                                                nativeAd.destroy();
+                                                            }
+                                                            // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                            if (nativeAdMax != null) {
+                                                                nativeAdLoader.destroy(nativeAdMax);
+                                                            }
+
+                                                            // Save ad for cleanup.
+                                                            nativeAdMax = ad;
+
+                                                            // Add ad view to view.
+                                                            layNative.removeAllViews();
+                                                            layNative.addView(nativeAdView);
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdClicked(final MaxAd ad) {
+
+                                                        }
+                                                    });
+
+                                                    nativeAdLoader.loadAd(nativeAdView);
+                                                    break;
+
+                                                case "MIX":
+                                                    MaxNativeAdViewBinder binder3 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
+                                                            .setTitleTextViewId(R.id.title_text_view)
+                                                            .setBodyTextViewId(R.id.body_text_view)
+                                                            .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                            .setIconImageViewId(R.id.icon_image_view)
+                                                            .setMediaContentViewGroupId(R.id.media_view_container)
+                                                            .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                            .setCallToActionButtonId(R.id.cta_button)
+                                                            .build();
+                                                    nativeAdView = new MaxNativeAdView(binder3, activity);
 
                                                     nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
                                                     nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
@@ -288,6 +347,11 @@ public class AliendroidNative {
                                 nativeAdLoader.destroy(nativeAdMax);
                             }
                             break;
+                        case "MIX":
+                            if (nativeAdMax != null) {
+                                nativeAdLoader.destroy(nativeAdMax);
+                            }
+                            break;
                         case "MOPUB":
 
                             break;
@@ -344,6 +408,61 @@ public class AliendroidNative {
                                         public void onAdFailedToLoad(LoadAdError loadAdError) {
                                             NATIPNYA = 3;
                                             switch (selectAdsBackup) {
+
+
+                                                case "MIX":
+                                                    MaxNativeAdViewBinder binder3 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
+                                                            .setTitleTextViewId(R.id.title_text_view)
+                                                            .setBodyTextViewId(R.id.body_text_view)
+                                                            .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                            .setIconImageViewId(R.id.icon_image_view)
+                                                            .setMediaContentViewGroupId(R.id.media_view_container)
+                                                            .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                            .setCallToActionButtonId(R.id.cta_button)
+                                                            .build();
+                                                    nativeAdView = new MaxNativeAdView(binder3, activity);
+
+                                                    nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                    nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                        @Override
+                                                        public void onAdRevenuePaid(MaxAd ad) {
+
+                                                        }
+                                                    });
+                                                    nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                        @Override
+                                                        public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                            if (nativeAd != null) {
+                                                                nativeAd.destroy();
+                                                            }
+                                                            // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                            if (nativeAdMax != null) {
+                                                                nativeAdLoader.destroy(nativeAdMax);
+                                                            }
+
+                                                            // Save ad for cleanup.
+                                                            nativeAdMax = ad;
+
+                                                            // Add ad view to view.
+                                                            layNative.removeAllViews();
+                                                            layNative.addView(nativeAdView);
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdClicked(final MaxAd ad) {
+
+                                                        }
+                                                    });
+
+                                                    nativeAdLoader.loadAd(nativeAdView);
+                                                    break;
+
                                                 case "APPLOVIN-M":
                                                     MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
                                                             .setTitleTextViewId(R.id.title_text_view)
@@ -503,6 +622,12 @@ public class AliendroidNative {
                                 nativeAdLoader.destroy(nativeAdMax);
                             }
                             break;
+
+                            case "MIX":
+                            if (nativeAdMax != null) {
+                                nativeAdLoader.destroy(nativeAdMax);
+                            }
+                            break;
                         case "MOPUB":
 
                             break;
@@ -559,6 +684,60 @@ public class AliendroidNative {
                                         public void onAdFailedToLoad(LoadAdError loadAdError) {
                                             NATIPNYA = 4;
                                             switch (selectAdsBackup) {
+
+                                                case "MIX":
+                                                    MaxNativeAdViewBinder binder3 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
+                                                            .setTitleTextViewId(R.id.title_text_view)
+                                                            .setBodyTextViewId(R.id.body_text_view)
+                                                            .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                            .setIconImageViewId(R.id.icon_image_view)
+                                                            .setMediaContentViewGroupId(R.id.media_view_container)
+                                                            .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                            .setCallToActionButtonId(R.id.cta_button)
+                                                            .build();
+                                                    nativeAdView = new MaxNativeAdView(binder3, activity);
+
+                                                    nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                    nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                        @Override
+                                                        public void onAdRevenuePaid(MaxAd ad) {
+
+                                                        }
+                                                    });
+                                                    nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                        @Override
+                                                        public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                            if (nativeAd != null) {
+                                                                nativeAd.destroy();
+                                                            }
+                                                            // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                            if (nativeAdMax != null) {
+                                                                nativeAdLoader.destroy(nativeAdMax);
+                                                            }
+
+                                                            // Save ad for cleanup.
+                                                            nativeAdMax = ad;
+
+                                                            // Add ad view to view.
+                                                            layNative.removeAllViews();
+                                                            layNative.addView(nativeAdView);
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdClicked(final MaxAd ad) {
+
+                                                        }
+                                                    });
+
+                                                    nativeAdLoader.loadAd(nativeAdView);
+                                                    break;
+
                                                 case "APPLOVIN-M":
                                                     MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
                                                             .setTitleTextViewId(R.id.title_text_view)
@@ -718,6 +897,11 @@ public class AliendroidNative {
                                 nativeAdLoader.destroy(nativeAdMax);
                             }
                             break;
+                            case "MIX":
+                            if (nativeAdMax != null) {
+                                nativeAdLoader.destroy(nativeAdMax);
+                            }
+                            break;
                         case "MOPUB":
 
                             break;
@@ -774,6 +958,60 @@ public class AliendroidNative {
                                         public void onAdFailedToLoad(LoadAdError loadAdError) {
                                             NATIPNYA = 5;
                                             switch (selectAdsBackup) {
+
+                                                case "MIX":
+                                                    MaxNativeAdViewBinder binder3 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
+                                                            .setTitleTextViewId(R.id.title_text_view)
+                                                            .setBodyTextViewId(R.id.body_text_view)
+                                                            .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                            .setIconImageViewId(R.id.icon_image_view)
+                                                            .setMediaContentViewGroupId(R.id.media_view_container)
+                                                            .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                            .setCallToActionButtonId(R.id.cta_button)
+                                                            .build();
+                                                    nativeAdView = new MaxNativeAdView(binder3, activity);
+
+                                                    nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                    nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                        @Override
+                                                        public void onAdRevenuePaid(MaxAd ad) {
+
+                                                        }
+                                                    });
+                                                    nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                        @Override
+                                                        public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                            if (nativeAd != null) {
+                                                                nativeAd.destroy();
+                                                            }
+                                                            // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                            if (nativeAdMax != null) {
+                                                                nativeAdLoader.destroy(nativeAdMax);
+                                                            }
+
+                                                            // Save ad for cleanup.
+                                                            nativeAdMax = ad;
+
+                                                            // Add ad view to view.
+                                                            layNative.removeAllViews();
+                                                            layNative.addView(nativeAdView);
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdClicked(final MaxAd ad) {
+
+                                                        }
+                                                    });
+
+                                                    nativeAdLoader.loadAd(nativeAdView);
+                                                    break;
+
                                                 case "APPLOVIN-M":
                                                     MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
                                                             .setTitleTextViewId(R.id.title_text_view)
@@ -928,7 +1166,13 @@ public class AliendroidNative {
                     }
                     NATIPNYA = 6;
                     switch (selectAdsBackup) {
-                        case "APPLOVIN-M":
+                        case "MIX":
+                            if (nativeAdMax != null) {
+                                nativeAdLoader.destroy(nativeAdMax);
+                            }
+                            break;
+
+                            case "APPLOVIN-M":
                             if (nativeAdMax != null) {
                                 nativeAdLoader.destroy(nativeAdMax);
                             }
@@ -989,6 +1233,60 @@ public class AliendroidNative {
                                         public void onAdFailedToLoad(LoadAdError loadAdError) {
                                             NATIPNYA = 6;
                                             switch (selectAdsBackup) {
+
+                                                case "MIX":
+                                                    MaxNativeAdViewBinder binder3 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
+                                                            .setTitleTextViewId(R.id.title_text_view)
+                                                            .setBodyTextViewId(R.id.body_text_view)
+                                                            .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                            .setIconImageViewId(R.id.icon_image_view)
+                                                            .setMediaContentViewGroupId(R.id.media_view_container)
+                                                            .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                            .setCallToActionButtonId(R.id.cta_button)
+                                                            .build();
+                                                    nativeAdView = new MaxNativeAdView(binder3, activity);
+
+                                                    nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                    nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                        @Override
+                                                        public void onAdRevenuePaid(MaxAd ad) {
+
+                                                        }
+                                                    });
+                                                    nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                        @Override
+                                                        public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                            if (nativeAd != null) {
+                                                                nativeAd.destroy();
+                                                            }
+                                                            // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                            if (nativeAdMax != null) {
+                                                                nativeAdLoader.destroy(nativeAdMax);
+                                                            }
+
+                                                            // Save ad for cleanup.
+                                                            nativeAdMax = ad;
+
+                                                            // Add ad view to view.
+                                                            layNative.removeAllViews();
+                                                            layNative.addView(nativeAdView);
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdClicked(final MaxAd ad) {
+
+                                                        }
+                                                    });
+
+                                                    nativeAdLoader.loadAd(nativeAdView);
+                                                    break;
+
                                                 case "APPLOVIN-M":
                                                     MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
                                                             .setTitleTextViewId(R.id.title_text_view)
@@ -1143,11 +1441,12 @@ public class AliendroidNative {
                     }
                     NATIPNYA = 1;
                     switch (selectAdsBackup) {
-                        case "APPLOVIN-M":
+                        case "MIX":
                             if (nativeAdMax != null) {
                                 nativeAdLoader.destroy(nativeAdMax);
                             }
                             break;
+
                         case "MOPUB":
 
                             break;
@@ -1204,6 +1503,60 @@ public class AliendroidNative {
                                         public void onAdFailedToLoad(LoadAdError loadAdError) {
                                             NATIPNYA = 1;
                                             switch (selectAdsBackup) {
+
+                                                case "MIX":
+                                                    MaxNativeAdViewBinder binder3 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
+                                                            .setTitleTextViewId(R.id.title_text_view)
+                                                            .setBodyTextViewId(R.id.body_text_view)
+                                                            .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                            .setIconImageViewId(R.id.icon_image_view)
+                                                            .setMediaContentViewGroupId(R.id.media_view_container)
+                                                            .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                            .setCallToActionButtonId(R.id.cta_button)
+                                                            .build();
+                                                    nativeAdView = new MaxNativeAdView(binder3, activity);
+
+                                                    nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                    nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                        @Override
+                                                        public void onAdRevenuePaid(MaxAd ad) {
+
+                                                        }
+                                                    });
+                                                    nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                        @Override
+                                                        public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                            if (nativeAd != null) {
+                                                                nativeAd.destroy();
+                                                            }
+                                                            // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                            if (nativeAdMax != null) {
+                                                                nativeAdLoader.destroy(nativeAdMax);
+                                                            }
+
+                                                            // Save ad for cleanup.
+                                                            nativeAdMax = ad;
+
+                                                            // Add ad view to view.
+                                                            layNative.removeAllViews();
+                                                            layNative.addView(nativeAdView);
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onNativeAdClicked(final MaxAd ad) {
+
+                                                        }
+                                                    });
+
+                                                    nativeAdLoader.loadAd(nativeAdView);
+                                                    break;
+
                                                 case "APPLOVIN-M":
                                                     MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
                                                             .setTitleTextViewId(R.id.title_text_view)
@@ -1362,7 +1715,12 @@ public class AliendroidNative {
                     nativeAd.destroy();
                 }
                 switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
+                    case "MIX":
+                        if (nativeAdMax != null) {
+                            nativeAdLoader.destroy(nativeAdMax);
+                        }
+                        break;
+                        case "APPLOVIN-M":
                         if (nativeAdMax != null) {
                             nativeAdLoader.destroy(nativeAdMax);
                         }
@@ -1423,7 +1781,7 @@ public class AliendroidNative {
                                     @Override
                                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                                         switch (selectAdsBackup) {
-                                            case "APPLOVIN-M":
+                                            case "MIX":
                                                 MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
                                                         .setTitleTextViewId(R.id.title_text_view)
                                                         .setBodyTextViewId(R.id.body_text_view)
@@ -1434,6 +1792,58 @@ public class AliendroidNative {
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
+
+                                                nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                    @Override
+                                                    public void onAdRevenuePaid(MaxAd ad) {
+
+                                                    }
+                                                });
+                                                nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                        if (nativeAd != null) {
+                                                            nativeAd.destroy();
+                                                        }
+                                                        // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                        if (nativeAdMax != null) {
+                                                            nativeAdLoader.destroy(nativeAdMax);
+                                                        }
+
+                                                        // Save ad for cleanup.
+                                                        nativeAdMax = ad;
+
+                                                        // Add ad view to view.
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(nativeAdView);
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdClicked(final MaxAd ad) {
+
+                                                    }
+                                                });
+
+                                                nativeAdLoader.loadAd(nativeAdView);
+                                                break;
+                                                case "APPLOVIN-M":
+                                                MaxNativeAdViewBinder binder1 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
+                                                        .setTitleTextViewId(R.id.title_text_view)
+                                                        .setBodyTextViewId(R.id.body_text_view)
+                                                        .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                        .setIconImageViewId(R.id.icon_image_view)
+                                                        .setMediaContentViewGroupId(R.id.media_view_container)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                        .setCallToActionButtonId(R.id.cta_button)
+                                                        .build();
+                                                nativeAdView = new MaxNativeAdView(binder1, activity);
 
                                                 nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
                                                 nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
@@ -1584,6 +1994,11 @@ public class AliendroidNative {
                         nativeAdLoader.destroy(nativeAdMax);
                     }
                 }
+                else if ("MIX".equals(selectAdsBackup)) {
+                    if (nativeAdMax != null) {
+                        nativeAdLoader.destroy(nativeAdMax);
+                    }
+                }
                 nativeAd = nativeAds;
                 NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
                         .inflate(R.layout.admob_small_native_rectangle, null);
@@ -1618,7 +2033,7 @@ public class AliendroidNative {
                                     @Override
                                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                                         switch (selectAdsBackup) {
-                                            case "APPLOVIN-M":
+                                            case "MIX":
                                                 MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native_rectangle)
                                                         .setTitleTextViewId(R.id.title_text_view)
                                                         .setBodyTextViewId(R.id.body_text_view)
@@ -1629,6 +2044,59 @@ public class AliendroidNative {
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
+
+                                                nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                    @Override
+                                                    public void onAdRevenuePaid(MaxAd ad) {
+
+                                                    }
+                                                });
+                                                nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                        if (nativeAd != null) {
+                                                            nativeAd.destroy();
+                                                        }
+                                                        // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                        if (nativeAdMax != null) {
+                                                            nativeAdLoader.destroy(nativeAdMax);
+                                                        }
+
+                                                        // Save ad for cleanup.
+                                                        nativeAdMax = ad;
+
+                                                        // Add ad view to view.
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(nativeAdView);
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdClicked(final MaxAd ad) {
+
+                                                    }
+                                                });
+
+                                                nativeAdLoader.loadAd(nativeAdView);
+                                                break;
+
+                                                case "APPLOVIN-M":
+                                                MaxNativeAdViewBinder binder4 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native_rectangle)
+                                                        .setTitleTextViewId(R.id.title_text_view)
+                                                        .setBodyTextViewId(R.id.body_text_view)
+                                                        .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                        .setIconImageViewId(R.id.icon_image_view)
+                                                        .setMediaContentViewGroupId(R.id.media_view_container)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                        .setCallToActionButtonId(R.id.cta_button)
+                                                        .build();
+                                                nativeAdView = new MaxNativeAdView(binder4, activity);
 
                                                 nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
                                                 nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
@@ -1781,7 +2249,12 @@ public class AliendroidNative {
                     nativeAd.destroy();
                 }
                 switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
+                    case "MIX":
+                        if (nativeAdMax != null) {
+                            nativeAdLoader.destroy(nativeAdMax);
+                        }
+                        break;
+                        case "APPLOVIN-M":
                         if (nativeAdMax != null) {
                             nativeAdLoader.destroy(nativeAdMax);
                         }
@@ -1842,6 +2315,61 @@ public class AliendroidNative {
                                     @Override
                                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                                         switch (selectAdsBackup) {
+
+
+                                            case "MIX":
+                                                MaxNativeAdViewBinder binder4 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native_white)
+                                                        .setTitleTextViewId(R.id.title_text_view)
+                                                        .setBodyTextViewId(R.id.body_text_view)
+                                                        .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                        .setIconImageViewId(R.id.icon_image_view)
+                                                        .setMediaContentViewGroupId(R.id.media_view_container)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                        .setCallToActionButtonId(R.id.cta_button)
+                                                        .build();
+                                                nativeAdView = new MaxNativeAdView(binder4, activity);
+
+                                                nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                    @Override
+                                                    public void onAdRevenuePaid(MaxAd ad) {
+
+                                                    }
+                                                });
+                                                nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                        if (nativeAd != null) {
+                                                            nativeAd.destroy();
+                                                        }
+                                                        // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                        if (nativeAdMax != null) {
+                                                            nativeAdLoader.destroy(nativeAdMax);
+                                                        }
+
+                                                        // Save ad for cleanup.
+                                                        nativeAdMax = ad;
+
+                                                        // Add ad view to view.
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(nativeAdView);
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdClicked(final MaxAd ad) {
+
+                                                    }
+                                                });
+
+                                                nativeAdLoader.loadAd(nativeAdView);
+                                                break;
+
                                             case "APPLOVIN-M":
                                                 MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native_white)
                                                         .setTitleTextViewId(R.id.title_text_view)
@@ -2000,7 +2528,12 @@ public class AliendroidNative {
                     nativeAd.destroy();
                 }
                 switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
+                    case "MIX":
+                        if (nativeAdMax != null) {
+                            nativeAdLoader.destroy(nativeAdMax);
+                        }
+                        break;
+                        case "APPLOVIN-M":
                         if (nativeAdMax != null) {
                             nativeAdLoader.destroy(nativeAdMax);
                         }
@@ -2061,6 +2594,60 @@ public class AliendroidNative {
                                     @Override
                                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                                         switch (selectAdsBackup) {
+
+                                            case "MIX":
+                                                MaxNativeAdViewBinder binder4 = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native_non_stroke)
+                                                        .setTitleTextViewId(R.id.title_text_view)
+                                                        .setBodyTextViewId(R.id.body_text_view)
+                                                        .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                        .setIconImageViewId(R.id.icon_image_view)
+                                                        .setMediaContentViewGroupId(R.id.media_view_container)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                        .setCallToActionButtonId(R.id.cta_button)
+                                                        .build();
+                                                nativeAdView = new MaxNativeAdView(binder4, activity);
+
+                                                nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                    @Override
+                                                    public void onAdRevenuePaid(MaxAd ad) {
+
+                                                    }
+                                                });
+                                                nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                        if (nativeAd != null) {
+                                                            nativeAd.destroy();
+                                                        }
+                                                        // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                        if (nativeAdMax != null) {
+                                                            nativeAdLoader.destroy(nativeAdMax);
+                                                        }
+
+                                                        // Save ad for cleanup.
+                                                        nativeAdMax = ad;
+
+                                                        // Add ad view to view.
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(nativeAdView);
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdClicked(final MaxAd ad) {
+
+                                                    }
+                                                });
+
+                                                nativeAdLoader.loadAd(nativeAdView);
+                                                break;
+
                                             case "APPLOVIN-M":
                                                 MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native_non_stroke)
                                                         .setTitleTextViewId(R.id.title_text_view)
@@ -2974,7 +3561,12 @@ public class AliendroidNative {
                     nativeAd.destroy();
                 }
                 switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
+                    case "MIX":
+                        if (nativeAdMax != null) {
+                            nativeAdLoader.destroy(nativeAdMax);
+                        }
+                        break;
+                        case "APPLOVIN-M":
                         if (nativeAdMax != null) {
                             nativeAdLoader.destroy(nativeAdMax);
                         }
@@ -3033,7 +3625,63 @@ public class AliendroidNative {
                                     @Override
                                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                                         switch (selectAdsBackup) {
-                                            case "APPLOVIN-M": {
+
+                                            case "MIX":
+                                                MaxNativeAdViewBinder binder4 = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
+                                                        .setTitleTextViewId(R.id.title_text_view)
+                                                        .setBodyTextViewId(R.id.body_text_view)
+                                                        .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                        .setIconImageViewId(R.id.icon_image_view)
+                                                        .setMediaContentViewGroupId(R.id.media_view_container)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                        .setCallToActionButtonId(R.id.cta_button)
+                                                        .build();
+                                                nativeAdView = new MaxNativeAdView(binder4, activity);
+
+                                                nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                    @Override
+                                                    public void onAdRevenuePaid(MaxAd ad) {
+
+                                                    }
+                                                });
+                                                nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                        if (nativeAd != null) {
+                                                            nativeAd.destroy();
+                                                        }
+                                                        // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                        if (nativeAdMax != null) {
+                                                            nativeAdLoader.destroy(nativeAdMax);
+                                                        }
+
+                                                        // Save ad for cleanup.
+                                                        nativeAdMax = ad;
+
+                                                        // Add ad view to view.
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(nativeAdView);
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdClicked(final MaxAd ad) {
+
+                                                    }
+                                                });
+
+                                                nativeAdLoader.loadAd(nativeAdView);
+
+
+                                                break;
+
+                                            case "APPLOVIN-M":
                                                 MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
                                                         .setTitleTextViewId(R.id.title_text_view)
                                                         .setBodyTextViewId(R.id.body_text_view)
@@ -3084,8 +3732,9 @@ public class AliendroidNative {
                                                 });
 
                                                 nativeAdLoader.loadAd(nativeAdView);
-                                                break;
-                                            }
+
+
+                                            break;
                                             case "MOPUB":
 
                                                 break;
@@ -3118,7 +3767,7 @@ public class AliendroidNative {
                                                 break;
                                             case "KOSONG":
 
-                                                MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
+                                                MaxNativeAdViewBinder binder2 = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
                                                         .setTitleTextViewId(R.id.title_text_view)
                                                         .setBodyTextViewId(R.id.body_text_view)
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
@@ -3127,7 +3776,7 @@ public class AliendroidNative {
                                                         .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
-                                                nativeAdView = new MaxNativeAdView(binder, activity);
+                                                nativeAdView = new MaxNativeAdView(binder2, activity);
 
                                                 nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
                                                 nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
@@ -3189,7 +3838,12 @@ public class AliendroidNative {
                     nativeAd.destroy();
                 }
                 switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
+                    case "MIX":
+                        if (nativeAdMax != null) {
+                            nativeAdLoader.destroy(nativeAdMax);
+                        }
+                        break;
+                        case "APPLOVIN-M":
                         if (nativeAdMax != null) {
                             nativeAdLoader.destroy(nativeAdMax);
                         }
@@ -3248,8 +3902,9 @@ public class AliendroidNative {
                                     @Override
                                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                                         switch (selectAdsBackup) {
-                                            case "APPLOVIN-M": {
-                                                MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_white)
+
+                                            case "MIX":
+                                                MaxNativeAdViewBinder binder3 = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_white)
                                                         .setTitleTextViewId(R.id.title_text_view)
                                                         .setBodyTextViewId(R.id.body_text_view)
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
@@ -3258,7 +3913,7 @@ public class AliendroidNative {
                                                         .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
-                                                nativeAdView = new MaxNativeAdView(binder, activity);
+                                                nativeAdView = new MaxNativeAdView(binder3, activity);
 
                                                 nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
                                                 nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
@@ -3300,7 +3955,59 @@ public class AliendroidNative {
 
                                                 nativeAdLoader.loadAd(nativeAdView);
                                                 break;
-                                            }
+
+                                            case "APPLOVIN-M":
+                                                MaxNativeAdViewBinder binder2 = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_white)
+                                                        .setTitleTextViewId(R.id.title_text_view)
+                                                        .setBodyTextViewId(R.id.body_text_view)
+                                                        .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                        .setIconImageViewId(R.id.icon_image_view)
+                                                        .setMediaContentViewGroupId(R.id.media_view_container)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                        .setCallToActionButtonId(R.id.cta_button)
+                                                        .build();
+                                                nativeAdView = new MaxNativeAdView(binder2, activity);
+
+                                                nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                    @Override
+                                                    public void onAdRevenuePaid(MaxAd ad) {
+
+                                                    }
+                                                });
+                                                nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                        if (nativeAd != null) {
+                                                            nativeAd.destroy();
+                                                        }
+                                                        // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                        if (nativeAdMax != null) {
+                                                            nativeAdLoader.destroy(nativeAdMax);
+                                                        }
+
+                                                        // Save ad for cleanup.
+                                                        nativeAdMax = ad;
+
+                                                        // Add ad view to view.
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(nativeAdView);
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdClicked(final MaxAd ad) {
+
+                                                    }
+                                                });
+
+                                                nativeAdLoader.loadAd(nativeAdView);
+                                                break;
                                             case "MOPUB":
 
                                                 break;
@@ -3332,7 +4039,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "KOSONG":
-                                                MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_white)
+                                                MaxNativeAdViewBinder binder4 = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_white)
                                                         .setTitleTextViewId(R.id.title_text_view)
                                                         .setBodyTextViewId(R.id.body_text_view)
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
@@ -3341,7 +4048,7 @@ public class AliendroidNative {
                                                         .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
-                                                nativeAdView = new MaxNativeAdView(binder, activity);
+                                                nativeAdView = new MaxNativeAdView(binder4, activity);
 
                                                 nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
                                                 nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
@@ -3404,7 +4111,13 @@ public class AliendroidNative {
                     nativeAd.destroy();
                 }
                 switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
+                    case "MIX":
+                        if (nativeAdMax != null) {
+                            nativeAdLoader.destroy(nativeAdMax);
+                        }
+                        break;
+
+                        case "APPLOVIN-M":
                         if (nativeAdMax != null) {
                             nativeAdLoader.destroy(nativeAdMax);
                         }
@@ -3463,7 +4176,64 @@ public class AliendroidNative {
                                     @Override
                                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                                         switch (selectAdsBackup) {
-                                            case "APPLOVIN-M": {
+
+
+                                            case "MIX": {
+                                                MaxNativeAdViewBinder binder3 = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_non_stroke)
+                                                        .setTitleTextViewId(R.id.title_text_view)
+                                                        .setBodyTextViewId(R.id.body_text_view)
+                                                        .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                        .setIconImageViewId(R.id.icon_image_view)
+                                                        .setMediaContentViewGroupId(R.id.media_view_container)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                        .setCallToActionButtonId(R.id.cta_button)
+                                                        .build();
+                                                nativeAdView = new MaxNativeAdView(binder3, activity);
+
+                                                nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                    @Override
+                                                    public void onAdRevenuePaid(MaxAd ad) {
+
+                                                    }
+                                                });
+                                                nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
+
+                                                        if (nativeAd != null) {
+                                                            nativeAd.destroy();
+                                                        }
+                                                        // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                        if (nativeAdMax != null) {
+                                                            nativeAdLoader.destroy(nativeAdMax);
+                                                        }
+
+                                                        // Save ad for cleanup.
+                                                        nativeAdMax = ad;
+
+                                                        // Add ad view to view.
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(nativeAdView);
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdClicked(final MaxAd ad) {
+
+                                                    }
+                                                });
+
+                                                nativeAdLoader.loadAd(nativeAdView);
+
+                                            }
+                                            break;
+
+                                            case "APPLOVIN-M":{
                                                 MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_non_stroke)
                                                         .setTitleTextViewId(R.id.title_text_view)
                                                         .setBodyTextViewId(R.id.body_text_view)
@@ -3514,8 +4284,9 @@ public class AliendroidNative {
                                                 });
 
                                                 nativeAdLoader.loadAd(nativeAdView);
-                                                break;
-                                            }
+                                        }
+
+                                            break;
                                             case "MOPUB":
 
                                                 break;
@@ -3547,7 +4318,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "KOSONG":
-                                                MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_non_stroke)
+                                                MaxNativeAdViewBinder binder2 = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native_non_stroke)
                                                         .setTitleTextViewId(R.id.title_text_view)
                                                         .setBodyTextViewId(R.id.body_text_view)
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
@@ -3556,7 +4327,7 @@ public class AliendroidNative {
                                                         .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
-                                                nativeAdView = new MaxNativeAdView(binder, activity);
+                                                nativeAdView = new MaxNativeAdView(binder2, activity);
 
                                                 nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
                                                 nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {

@@ -32,7 +32,6 @@ import com.startapp.sdk.adsbase.Ad;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdDisplayListener;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
-import com.startapp.sdk.adsbase.adlisteners.VideoListener;
 
 
 //Uranus
@@ -122,6 +121,10 @@ public class AliendroidIntertitial {
             case "FACEBOOK":
                 FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
                 FBinterstitialAd.loadAd();
+                break;
+            case "MIX":
+                IronSource.isInterstitialPlacementCapped("DefaultInterstitial");
+                IronSource.loadInterstitial();
                 break;
             case "STARTAPP":
                 startAppAd = new StartAppAd(activity);
@@ -769,12 +772,6 @@ public class AliendroidIntertitial {
 
     public static void LoadIntertitialStartApp(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
         startAppAd = new StartAppAd(activity);
-        startAppAd.setVideoListener(new VideoListener() {
-            @Override
-            public void onVideoCompleted() {
-            }
-        });
-
         startAppAd.loadAd(StartAppAd.AdMode.VIDEO, new AdEventListener() {
             @Override
             public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
@@ -898,11 +895,20 @@ public class AliendroidIntertitial {
                     case "MOPUB":
 
                         break;
+
+                    case "MIX":
+                        IronSource.showInterstitial("DefaultInterstitial");
+                        break;
                     case "IRON":
-                        IronSource.showInterstitial(idIntertitialBackup);
+                        IronSource.showInterstitial("DefaultInterstitial");
                         break;
                     case "STARTAPP":
-                        StartAppAd.showAd(activity);
+                        if (startAppAd.isReady()) {
+                            startAppAd.showAd();
+                        }
+                        else {
+                            StartAppAd.showAd(activity);
+                        }
                         break;
                     case "APPLOVIN-D":
                         if (interstitialAdlovin != null) {
@@ -916,7 +922,12 @@ public class AliendroidIntertitial {
                         }
                         break;
                     case "KOSONG":
-                        StartAppAd.showAd(activity);
+                        if (startAppAd.isReady()) {
+                            startAppAd.showAd();
+                        }
+                        else {
+                            StartAppAd.showAd(activity);
+                        }
                         break;
                 }
                 LoadIntertitialAdmob(activity, selectAdsBackup, idIntertitial, idIntertitialBackup, Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
